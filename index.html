@@ -3,35 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>聂璐怡 | 个人名片</title>
+    <title>聂璐怡 | 动态个人名片</title>
     <meta name="description" content="聂璐怡个人名片页，含教育背景、项目经历与联系方式。" />
     <style>
       :root {
-        --bg: #f6f8fc;
-        --panel: #ffffff;
-        --ink: #1f2a44;
-        --sub: #5c6985;
-        --line: #e7ecf5;
-        --primary: #2f6fed;
-        --accent: #13b3a8;
+        --bg-0: #080d1f;
+        --bg-1: #111a3b;
+        --bg-2: #1c2860;
+        --panel: rgba(15, 25, 58, 0.72);
+        --panel-border: rgba(173, 199, 255, 0.28);
+        --ink: #e8efff;
+        --sub: #afbadb;
+        --primary: #7aa8ff;
+        --accent: #52f0d0;
+        --hot: #ff7bc3;
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html,
+      body {
+        height: 100%;
+      }
+
       body {
         margin: 0;
         color: var(--ink);
-        background:
-          radial-gradient(circle at 0 0, #dfeaff 0%, transparent 32%),
-          radial-gradient(circle at 100% 0, #dff9f5 0%, transparent 30%),
-          var(--bg);
         font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+        background:
+          radial-gradient(circle at 8% 0%, rgba(82, 240, 208, 0.18), transparent 38%),
+          radial-gradient(circle at 90% 10%, rgba(122, 168, 255, 0.22), transparent 35%),
+          linear-gradient(140deg, var(--bg-0), var(--bg-1) 42%, var(--bg-2));
+        overflow-x: hidden;
       }
 
-      .container {
-        width: min(980px, 92vw);
+      #particle-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      .orb {
+        position: fixed;
+        border-radius: 999px;
+        filter: blur(42px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .orb.a {
+        width: 320px;
+        height: 320px;
+        left: -80px;
+        top: 8%;
+        background: rgba(82, 240, 208, 0.2);
+        animation: driftA 11s ease-in-out infinite;
+      }
+
+      .orb.b {
+        width: 360px;
+        height: 360px;
+        right: -120px;
+        bottom: 8%;
+        background: rgba(255, 123, 195, 0.22);
+        animation: driftB 14s ease-in-out infinite;
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: min(1040px, 92vw);
         margin: 28px auto 40px;
         display: grid;
         grid-template-columns: 320px 1fr;
@@ -39,31 +86,37 @@
       }
 
       .card {
+        border-radius: 20px;
+        border: 1px solid var(--panel-border);
         background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        box-shadow: 0 10px 28px rgba(27, 45, 94, 0.08);
+        backdrop-filter: blur(10px);
+        box-shadow:
+          0 14px 36px rgba(1, 6, 20, 0.45),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       }
 
       .side {
         padding: 24px 20px;
+        overflow: hidden;
       }
 
       .avatar {
-        width: 86px;
-        height: 86px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         display: grid;
         place-items: center;
-        color: #fff;
-        font-size: 34px;
+        font-size: 36px;
         font-weight: 700;
-        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--accent), var(--hot));
+        box-shadow: 0 0 26px rgba(82, 240, 208, 0.45);
       }
 
       h1 {
         margin: 14px 0 4px;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+        letter-spacing: 0.02em;
       }
 
       .title {
@@ -81,28 +134,65 @@
 
       .chip {
         font-size: 12px;
-        padding: 5px 10px;
-        border: 1px solid #dce6fa;
+        padding: 6px 10px;
         border-radius: 999px;
-        color: #2b4b92;
-        background: #f3f7ff;
+        border: 1px solid rgba(173, 199, 255, 0.35);
+        color: #dfe9ff;
+        background: rgba(122, 168, 255, 0.14);
       }
 
       .contact {
         margin-top: 18px;
-        border-top: 1px dashed var(--line);
+        border-top: 1px dashed rgba(173, 199, 255, 0.24);
         padding-top: 14px;
       }
 
       .contact p {
-        margin: 8px 0;
-        color: #3f4d69;
+        margin: 10px 0;
+        color: #d4ddf8;
         line-height: 1.5;
         word-break: break-all;
       }
 
+      .contact strong {
+        display: block;
+        color: #8ee2ff;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+      }
+
       .main {
         padding: 22px;
+      }
+
+      .headline {
+        margin: 0 0 12px;
+        font-size: 1.02rem;
+        color: #9dd8ff;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .section {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: reveal 0.7s ease forwards;
+      }
+
+      .section:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .section:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .section:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .section:nth-child(4) {
+        animation-delay: 0.4s;
       }
 
       .section + .section {
@@ -112,30 +202,38 @@
       h2 {
         margin: 0 0 10px;
         font-size: 1rem;
-        letter-spacing: 0.02em;
-        color: #28407d;
+        letter-spacing: 0.03em;
+        color: #b4ddff;
       }
 
       .summary {
         margin: 0;
-        color: #41506d;
+        color: #dbe5ff;
         line-height: 1.8;
       }
 
       .item {
-        border: 1px solid var(--line);
-        border-radius: 12px;
+        border-radius: 13px;
+        border: 1px solid rgba(173, 199, 255, 0.28);
         padding: 12px;
-        background: #fcfdff;
+        background: rgba(13, 23, 52, 0.56);
+        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
       }
 
       .item + .item {
         margin-top: 10px;
       }
 
+      .item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(82, 240, 208, 0.52);
+        box-shadow: 0 8px 18px rgba(2, 11, 35, 0.34);
+      }
+
       .item strong {
         display: block;
         margin-bottom: 6px;
+        color: #f0f5ff;
       }
 
       .muted {
@@ -146,25 +244,79 @@
       ul {
         margin: 8px 0 0;
         padding-left: 18px;
-        color: #3f4d69;
-        line-height: 1.7;
+        color: #d2dcfb;
+        line-height: 1.72;
       }
 
       .footer {
         margin-top: 16px;
         font-size: 12px;
-        color: #74819b;
+        color: #8ea0c8;
       }
 
-      @media (max-width: 860px) {
-        .container {
+      @keyframes driftA {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(42px, 28px) scale(1.08);
+        }
+      }
+
+      @keyframes driftB {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(-34px, -26px) scale(1.07);
+        }
+      }
+
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 880px) {
+        .wrap {
           grid-template-columns: 1fr;
+          margin-top: 18px;
+        }
+
+        .side,
+        .main {
+          padding: 18px;
+        }
+
+        .orb {
+          opacity: 0.65;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .section,
+        .orb {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+
+        .item {
+          transition: none;
         }
       }
     </style>
   </head>
   <body>
-    <main class="container">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+
+    <main class="wrap">
       <aside class="card side">
         <div class="avatar">聂</div>
         <h1>聂璐怡</h1>
@@ -184,6 +336,8 @@
       </aside>
 
       <section class="card main">
+        <p class="headline">Personal Card</p>
+
         <article class="section">
           <h2>个人简介</h2>
           <p class="summary">
@@ -241,8 +395,111 @@
           </div>
         </article>
 
-        <div class="footer">个人名片页 · GitHub Pages 部署</div>
+        <div class="footer">动态名片页 · GitHub Pages 部署</div>
       </section>
     </main>
+
+    <script>
+      (function () {
+        var canvas = document.getElementById("particle-canvas");
+        var ctx = canvas.getContext("2d");
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var particles = [];
+        var pointer = { x: -9999, y: -9999 };
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function resize() {
+          var w = window.innerWidth;
+          var h = window.innerHeight;
+          canvas.width = Math.floor(w * dpr);
+          canvas.height = Math.floor(h * dpr);
+          canvas.style.width = w + "px";
+          canvas.style.height = h + "px";
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          var targetCount = reduced ? Math.min(18, Math.floor(w / 80)) : Math.min(70, Math.floor(w / 24));
+          particles = [];
+          for (var i = 0; i < targetCount; i += 1) {
+            particles.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * (reduced ? 0.2 : 0.65),
+              vy: (Math.random() - 0.5) * (reduced ? 0.2 : 0.65),
+              r: Math.random() * 1.8 + 0.8
+            });
+          }
+        }
+
+        function step() {
+          var w = window.innerWidth;
+          var h = window.innerHeight;
+          ctx.clearRect(0, 0, w, h);
+
+          for (var i = 0; i < particles.length; i += 1) {
+            var p = particles[i];
+
+            if (!reduced) {
+              p.x += p.vx;
+              p.y += p.vy;
+            }
+
+            if (p.x <= 0 || p.x >= w) p.vx *= -1;
+            if (p.y <= 0 || p.y >= h) p.vy *= -1;
+
+            var dx = p.x - pointer.x;
+            var dy = p.y - pointer.y;
+            var dist2 = dx * dx + dy * dy;
+            if (!reduced && dist2 < 18000) {
+              p.vx += dx * 0.00005;
+              p.vy += dy * 0.00005;
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(168, 211, 255, 0.75)";
+            ctx.fill();
+
+            for (var j = i + 1; j < particles.length; j += 1) {
+              var q = particles[j];
+              var lx = p.x - q.x;
+              var ly = p.y - q.y;
+              var d = Math.sqrt(lx * lx + ly * ly);
+              if (d < 132) {
+                var alpha = (1 - d / 132) * 0.34;
+                ctx.strokeStyle = "rgba(126, 210, 255," + alpha.toFixed(3) + ")";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(q.x, q.y);
+                ctx.stroke();
+              }
+            }
+          }
+
+          if (!reduced) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        window.addEventListener("resize", resize);
+        window.addEventListener("mousemove", function (e) {
+          pointer.x = e.clientX;
+          pointer.y = e.clientY;
+        });
+        window.addEventListener("touchmove", function (e) {
+          if (e.touches && e.touches[0]) {
+            pointer.x = e.touches[0].clientX;
+            pointer.y = e.touches[0].clientY;
+          }
+        }, { passive: true });
+        window.addEventListener("mouseleave", function () {
+          pointer.x = -9999;
+          pointer.y = -9999;
+        });
+
+        resize();
+        step();
+      })();
+    </script>
   </body>
 </html>
