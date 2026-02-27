@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小聂子的静态页面</title>
+    <meta
+      name="description"
+      content="一个简单、清爽、移动端友好的 GitHub Pages 静态页面示例。"
+    />
+    <style>
+      :root {
+        --bg-1: #fef6e4;
+        --bg-2: #f3d2c1;
+        --ink: #172c66;
+        --muted: #4f5d75;
+        --card: #fffffe;
+        --accent: #f582ae;
+        --accent-2: #8bd3dd;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+        background: radial-gradient(circle at 20% 20%, #fff8f0 0%, transparent 35%),
+          radial-gradient(circle at 80% 0%, #e5fbff 0%, transparent 30%),
+          linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      }
+
+      .wrap {
+        width: min(960px, 92vw);
+        margin: 0 auto;
+        padding: 24px 0 40px;
+      }
+
+      .hero {
+        background: var(--card);
+        border: 1px solid #f3e5df;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(23, 44, 102, 0.08);
+        padding: 32px 28px;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #0f3a5f;
+        background: #dff6ff;
+        border: 1px solid #c7eefb;
+        border-radius: 999px;
+        padding: 6px 10px;
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        line-height: 1.15;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .cta {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 11px 16px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn.primary {
+        color: #1b1b1b;
+        background: var(--accent);
+        box-shadow: 0 7px 16px rgba(245, 130, 174, 0.35);
+      }
+
+      .btn.ghost {
+        color: var(--ink);
+        border: 1px solid #d8dce8;
+        background: #fff;
+      }
+
+      .grid {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid #ececf4;
+        border-radius: 14px;
+        padding: 14px;
+      }
+
+      .card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .footer {
+        margin-top: 16px;
+        font-size: 13px;
+        color: #556078;
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding: 24px 18px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <span class="tag">GITHUB PAGES</span>
+        <h1>部署成功，页面已上线</h1>
+        <p>
+          这是一个简单的静态页面，已经适配手机端和桌面端。
+          你后续可以直接修改这个文件继续扩展内容。
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/xufengnian-bei/mobile-static-page" target="_blank" rel="noreferrer">查看仓库</a>
+          <a class="btn ghost" href="https://github.com/xufengnian-bei" target="_blank" rel="noreferrer">GitHub 主页</a>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <strong>移动端友好</strong>
+            <p>使用自适应布局，小屏幕下自动切为单列。</p>
+          </article>
+          <article class="card">
+            <strong>纯静态</strong>
+            <p>仅 HTML + CSS，不依赖任何框架。</p>
+          </article>
+          <article class="card">
+            <strong>可直接改</strong>
+            <p>你可以把它当成个人主页模板继续迭代。</p>
+          </article>
+        </div>
+
+        <div class="footer">Created with OpenClaw · 2026</div>
+      </section>
+    </main>
+  </body>
+</html>
