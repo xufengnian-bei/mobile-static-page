@@ -3,20 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>小聂子的静态页面</title>
-    <meta
-      name="description"
-      content="一个简单、清爽、移动端友好的 GitHub Pages 静态页面示例。"
-    />
+    <title>聂璐怡 | 个人名片</title>
+    <meta name="description" content="聂璐怡个人名片页，含教育背景、项目经历与联系方式。" />
     <style>
       :root {
-        --bg-1: #fef6e4;
-        --bg-2: #f3d2c1;
-        --ink: #172c66;
-        --muted: #4f5d75;
-        --card: #fffffe;
-        --accent: #f582ae;
-        --accent-2: #8bd3dd;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --ink: #1f2a44;
+        --sub: #5c6985;
+        --line: #e7ecf5;
+        --primary: #2f6fed;
+        --accent: #13b3a8;
       }
 
       * {
@@ -25,150 +22,226 @@
 
       body {
         margin: 0;
-        min-height: 100vh;
         color: var(--ink);
-        font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
-        background: radial-gradient(circle at 20% 20%, #fff8f0 0%, transparent 35%),
-          radial-gradient(circle at 80% 0%, #e5fbff 0%, transparent 30%),
-          linear-gradient(140deg, var(--bg-1), var(--bg-2));
+        background:
+          radial-gradient(circle at 0 0, #dfeaff 0%, transparent 32%),
+          radial-gradient(circle at 100% 0, #dff9f5 0%, transparent 30%),
+          var(--bg);
+        font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
       }
 
-      .wrap {
-        width: min(960px, 92vw);
-        margin: 0 auto;
-        padding: 24px 0 40px;
-      }
-
-      .hero {
-        background: var(--card);
-        border: 1px solid #f3e5df;
-        border-radius: 18px;
-        box-shadow: 0 10px 30px rgba(23, 44, 102, 0.08);
-        padding: 32px 28px;
-      }
-
-      .tag {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        color: #0f3a5f;
-        background: #dff6ff;
-        border: 1px solid #c7eefb;
-        border-radius: 999px;
-        padding: 6px 10px;
-      }
-
-      h1 {
-        margin: 14px 0 10px;
-        font-size: clamp(1.8rem, 4vw, 2.8rem);
-        line-height: 1.15;
-      }
-
-      p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .cta {
-        margin-top: 22px;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 12px;
-        padding: 11px 16px;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn.primary {
-        color: #1b1b1b;
-        background: var(--accent);
-        box-shadow: 0 7px 16px rgba(245, 130, 174, 0.35);
-      }
-
-      .btn.ghost {
-        color: var(--ink);
-        border: 1px solid #d8dce8;
-        background: #fff;
-      }
-
-      .grid {
-        margin-top: 18px;
+      .container {
+        width: min(980px, 92vw);
+        margin: 28px auto 40px;
         display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
       }
 
       .card {
-        background: rgba(255, 255, 255, 0.75);
-        border: 1px solid #ececf4;
-        border-radius: 14px;
-        padding: 14px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 10px 28px rgba(27, 45, 94, 0.08);
       }
 
-      .card strong {
+      .side {
+        padding: 24px 20px;
+      }
+
+      .avatar {
+        width: 86px;
+        height: 86px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 34px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+      }
+
+      h1 {
+        margin: 14px 0 4px;
+        font-size: 1.8rem;
+      }
+
+      .title {
+        margin: 0;
+        color: var(--sub);
+        font-size: 0.95rem;
+      }
+
+      .chips {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        font-size: 12px;
+        padding: 5px 10px;
+        border: 1px solid #dce6fa;
+        border-radius: 999px;
+        color: #2b4b92;
+        background: #f3f7ff;
+      }
+
+      .contact {
+        margin-top: 18px;
+        border-top: 1px dashed var(--line);
+        padding-top: 14px;
+      }
+
+      .contact p {
+        margin: 8px 0;
+        color: #3f4d69;
+        line-height: 1.5;
+        word-break: break-all;
+      }
+
+      .main {
+        padding: 22px;
+      }
+
+      .section + .section {
+        margin-top: 14px;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        color: #28407d;
+      }
+
+      .summary {
+        margin: 0;
+        color: #41506d;
+        line-height: 1.8;
+      }
+
+      .item {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fcfdff;
+      }
+
+      .item + .item {
+        margin-top: 10px;
+      }
+
+      .item strong {
         display: block;
         margin-bottom: 6px;
       }
 
-      .footer {
-        margin-top: 16px;
-        font-size: 13px;
-        color: #556078;
+      .muted {
+        color: var(--sub);
+        font-size: 0.92rem;
       }
 
-      @media (max-width: 720px) {
-        .hero {
-          padding: 24px 18px;
-        }
+      ul {
+        margin: 8px 0 0;
+        padding-left: 18px;
+        color: #3f4d69;
+        line-height: 1.7;
+      }
 
-        .grid {
+      .footer {
+        margin-top: 16px;
+        font-size: 12px;
+        color: #74819b;
+      }
+
+      @media (max-width: 860px) {
+        .container {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <main class="wrap">
-      <section class="hero">
-        <span class="tag">GITHUB PAGES</span>
-        <h1>部署成功，页面已上线</h1>
-        <p>
-          这是一个简单的静态页面，已经适配手机端和桌面端。
-          你后续可以直接修改这个文件继续扩展内容。
-        </p>
+    <main class="container">
+      <aside class="card side">
+        <div class="avatar">聂</div>
+        <h1>聂璐怡</h1>
+        <p class="title">通信工程本科 · 求职中</p>
 
-        <div class="cta">
-          <a class="btn primary" href="https://github.com/xufengnian-bei/mobile-static-page" target="_blank" rel="noreferrer">查看仓库</a>
-          <a class="btn ghost" href="https://github.com/xufengnian-bei" target="_blank" rel="noreferrer">GitHub 主页</a>
+        <div class="chips">
+          <span class="chip">22岁</span>
+          <span class="chip">大学本科</span>
+          <span class="chip">郑州航空工业管理学院</span>
         </div>
 
-        <div class="grid">
-          <article class="card">
-            <strong>移动端友好</strong>
-            <p>使用自适应布局，小屏幕下自动切为单列。</p>
-          </article>
-          <article class="card">
-            <strong>纯静态</strong>
-            <p>仅 HTML + CSS，不依赖任何框架。</p>
-          </article>
-          <article class="card">
-            <strong>可直接改</strong>
-            <p>你可以把它当成个人主页模板继续迭代。</p>
-          </article>
+        <div class="contact">
+          <p><strong>手机</strong>19913711833</p>
+          <p><strong>邮箱</strong>19913711833@163.com</p>
+          <p><strong>微信</strong>Nly-207</p>
         </div>
+      </aside>
 
-        <div class="footer">Created with OpenClaw · 2026</div>
+      <section class="card main">
+        <article class="section">
+          <h2>个人简介</h2>
+          <p class="summary">
+            工作积极认真、细心负责，具备良好的分析与问题解决能力。勤奋好学，动手能力强，能在新环境中快速适应并持续提升。
+          </p>
+        </article>
+
+        <article class="section">
+          <h2>教育背景</h2>
+          <div class="item">
+            <strong>郑州航空工业管理学院 · 通信工程（本科）</strong>
+            <div class="muted">2020.09 - 2024.07</div>
+            <ul>
+              <li>主修：信号与系统、通信原理、数字信号处理、移动通信、网络通信技术、C语言程序设计等。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>项目与实践</h2>
+          <div class="item">
+            <strong>毕业设计：基于 STM32 的实验室智能安防报警系统</strong>
+            <ul>
+              <li>实现温湿度、烟雾、火焰监测与报警联动功能。</li>
+              <li>使用 Keil MDK + C 语言开发，完成传感器采集、显示与蜂鸣器告警逻辑。</li>
+            </ul>
+          </div>
+          <div class="item">
+            <strong>专业实习：无线网络规划与优化</strong>
+            <div class="muted">2023.6.10 - 2023.6.22</div>
+            <ul>
+              <li>掌握 LTE 无线网络优化流程与方法。</li>
+              <li>参与工参核查、参数规划、站点勘察、室内信号测试及报告输出。</li>
+            </ul>
+          </div>
+          <div class="item">
+            <strong>技能培训：基于 NB-IOT 的智慧系统</strong>
+            <div class="muted">2023.6.2 - 2023.6.9</div>
+            <ul>
+              <li>掌握串口、按键中断、蜂鸣器与温湿/烟雾传感器驱动等技术。</li>
+              <li>独立完成智慧消防栓检测报警功能，并获优秀小组荣誉。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>校园经历</h2>
+          <div class="item">
+            <strong>校艺术团器乐队队长</strong>
+            <div class="muted">2020.10 - 2022.10</div>
+            <ul>
+              <li>负责排练任务分配与队伍管理，组织有序。</li>
+              <li>推进多项活动执行，累计完成 10+ 场校园活动。</li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="footer">个人名片页 · GitHub Pages 部署</div>
       </section>
     </main>
   </body>
